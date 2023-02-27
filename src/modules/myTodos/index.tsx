@@ -16,11 +16,14 @@ interface ITodo {
 
 const MyTodos: React.FunctionComponent = () => {
   const userId = localStorage.getItem('userId');
-  const { isLoading: todosLoading, data: todos } = useFetchTodos();
+  const statusToFetch = useTodosStore((state) => state.statusToFetch);
+  const { isLoading: todosLoading, data: todos } = useFetchTodos(statusToFetch);
   const { mutate: addNewTodo } = useAddTodo();
   const isModalVisible = useTodosStore((state) => state.isModalVisible);
   const setModalVisible = useTodosStore((state) => state.setModalVisible);
   const isNewFirst = useTodosStore((state) => state.isNewFirst);
+
+  console.log(statusToFetch);
 
   const [newTodo, setNewTodo] = useState({
     title: '',

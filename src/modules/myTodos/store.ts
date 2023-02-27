@@ -13,9 +13,11 @@ interface ITodo {
 interface TodosState {
   isModalVisible: boolean;
   isNewFirst: boolean;
+  statusToFetch: string;
   // todos: ITodo[];
   setModalVisible: () => void;
   setNewFirst: () => void;
+  setStatus: (status: string) => any;
   // addNewTodo?: (title: string, priority: string, description: string) => void;
   // setTodos?: (todos: any) => void;
 }
@@ -24,8 +26,8 @@ const useTodosStore = create<TodosState>()(
   devtools(
     immer((set) => ({
       isModalVisible: false,
-      todos: [],
       isNewFirst: false,
+      statusToFetch: '',
       setModalVisible: () => {
         set((state) => ({
           isModalVisible: !state.isModalVisible,
@@ -34,6 +36,11 @@ const useTodosStore = create<TodosState>()(
       setNewFirst: () => {
         set((state) => ({
           isNewFirst: !state.isNewFirst,
+        }));
+      },
+      setStatus: (status: string) => {
+        set(() => ({
+          statusToFetch: status,
         }));
       },
       // addNewTodo: async (

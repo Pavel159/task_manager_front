@@ -8,8 +8,8 @@ import {
 } from './../api/todoAPI';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 
-export const useFetchTodos = () => {
-  return useQuery(['todos'], fetchTodos);
+export const useFetchTodos = (status: string) => {
+  return useQuery(['todos', status], () => fetchTodos(status));
 };
 
 export const useFetchFinishedTodos = () => {

@@ -1,9 +1,9 @@
 import { $authHost, $host } from './index';
 import jwt_decode from 'jwt-decode';
 
-export const fetchTodos = async () => {
+export const fetchTodos = async (status: string) => {
   let userId = localStorage.getItem('userId');
-  const { data } = await $authHost.get('api/todo', {
+  const { data } = await $authHost.get(`api/todo/${status}`, {
     params: {
       userId,
     },
