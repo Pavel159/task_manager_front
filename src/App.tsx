@@ -20,8 +20,8 @@ function App() {
   }, []);
   return (
     <QueryClientProvider client={queryClient}>
-      <div className='App'>
-        <div className='flex flex-row items-start font-Roboto'>
+      <div>
+        <div className='flex flex-row items-start'>
           <BrowserRouter>
             <Menu />
             <div className='ml-[320px]'>
